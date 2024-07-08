@@ -17,14 +17,14 @@ concurrency:
 
 jobs:
   wearos:
-    if: ${{ github.repository == 'HiddenRamblings/TagMo' }}
+    if: ${{ github.repository == 'VocalFan/TagMo' }}
     continue-on-error: true
     runs-on: ubuntu-latest
 
     steps:
     - uses: actions/checkout@v3
       with:
-        repository: HiddenRamblings/TagMo
+        repository: VocalFan/TagMo
         submodules: recursive
     - name: set up JDK 17
       uses: actions/setup-java@v3
@@ -38,7 +38,7 @@ jobs:
         echo "GIT_BRANCH=${GIT_BRANCH}" >> $GITHUB_ENV
         GIT_HASH=$(git rev-parse --short HEAD)
         echo "GIT_HASH=${GIT_HASH}" >> $GITHUB_ENV
-        APK_LINK="https://github.com/HiddenRamblings/TagMo/releases/download/master/TagMo-${GIT_HASH}-github-release-signed.apk"
+        APK_LINK="https://github.com/VocalFan/TagMo/releases/download/master/TagMo-${GIT_HASH}-github-release-signed.apk"
         echo "APK_LINK=${APK_LINK}" >> $GITHUB_ENV
 
     - uses: burrunan/gradle-cache-action@v1
@@ -94,7 +94,7 @@ jobs:
     steps:
     - uses: actions/checkout@v3
       with:
-        repository: HiddenRamblings/TagMo
+        repository: VocalFan/TagMo
         submodules: recursive
     - name: set up JDK 17
       uses: actions/setup-java@v3
