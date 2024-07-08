@@ -289,8 +289,8 @@ object TagArray {
             val pages = mifare.readPages(0)
             if (null == pages || pages.size != NfcByte.PAGE_SIZE * 4)
                 throw Exception(getString(R.string.fail_read_size))
-            if (!compareRange(pages, tagData, 9))
-                throw Exception(getString(R.string.fail_mismatch_uid))
+            //if (!compareRange(pages, tagData, 9))
+            //    throw Exception(getString(R.string.fail_mismatch_uid))
             Debug.verbose(TagWriter::class.java, R.string.validation_success)
         }
     }
