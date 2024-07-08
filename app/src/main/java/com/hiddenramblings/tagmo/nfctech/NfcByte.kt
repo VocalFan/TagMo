@@ -36,12 +36,31 @@ object NfcByte {
         "213C65444901602985E9F6B50CACB9C8CA3C4BCD13142711FF571CF01E66BD6F"
     )
     @JvmField
-    val POWERTAG_IDPAGES = TagArray.hexToByteArray(
-        "04070883091012131800000000000000"
-    )
+    val POWERTAG_IDPAGES: ByteArray
+        // Random ID as Powertags can have different IDs!
+        get() = generatePowerTagId()
     const val POWERTAG_KEY = "FFFFFFFFFFFFFFFF0000000000000000"
     @JvmField
     val POWERTAG_WRITE = TagArray.hexToByteArray("a000")
     @JvmField
     val POWERTAG_SIG = TagArray.hexToByteArray("3c00")
+
+    private fun generateIDHex(): ByteArray {
+        val bytes = ByteArray(8)
+        java.util.Random().nextBytes(bytes)
+        return bytes
+    }
+
+    private fun generatePowerTagId(): ByteArray {
+        // Manufacturer ID
+        val prefix = "04"
+        // Ending padding
+        val suffix = "00000000000000"
+        // Random ID, my beloved
+        val randomHex = generateIDHex().joinToString("") { String.format("%02X", it) }
+        // Crunch it together and
+        val hexString = prefix + randomHex + suffix
+        // Send it off
+        return TagArray.hexToByteArray(hexString)
+    }
 }
