@@ -35,7 +35,6 @@ object NfcByte {
     val POWERTAG_SIGNATURE = TagArray.hexToByteArray(
         "213C65444901602985E9F6B50CACB9C8CA3C4BCD13142711FF571CF01E66BD6F"
     )
-    @JvmField
     val POWERTAG_IDPAGES: ByteArray
         // Random ID as Powertags can have different IDs!
         get() = generatePowerTagId()
